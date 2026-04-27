@@ -3,7 +3,7 @@
 ## Participants
 
 - Alireza
-- Nom Prénom 2
+
 
 ---
 
