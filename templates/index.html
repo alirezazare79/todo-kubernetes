@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo Kubernetes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 18px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #f1f5f9;
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .done {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        a {
+            text-decoration: none;
+            margin-left: 10px;
+            color: #2563eb;
+        }
+
+        .delete {
+            color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Todo App sur Kubernetes</h1>
+
+    <form action="/add" method="POST">
+        <input type="text" name="task" placeholder="Ajouter une tâche..." required>
+        <button type="submit">Ajouter</button>
+    </form>
+
+    <ul>
+        {% for todo in todos %}
+            <li>
+                <span class="{% if todo[2] %}done{% endif %}">
+                    {{ todo[1] }}
+                </span>
+                <span>
+                    {% if not todo[2] %}
+                        <a href="/done/{{ todo[0] }}">Terminer</a>
+                    {% endif %}
+                    <a class="delete" href="/delete/{{ todo[0] }}">Supprimer</a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>

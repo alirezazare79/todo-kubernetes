@@ -1,0 +1,15 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: alireza-todo-app
+  labels:
+    app: alireza-todo-app
+spec:
+  to:
+    kind: Service
+    name: alireza-todo-app
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
