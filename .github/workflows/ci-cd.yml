@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+      - master
+  workflow_dispatch
 
 env:
   IMAGE_NAME: harbor.kakor.ovh/ipim2il/alireza-todo-app
